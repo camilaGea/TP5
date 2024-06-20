@@ -7,20 +7,6 @@ class MetodoNumerico:
         self.C = C
 
     def metodo_euler(self, f, t0, D0):
-        """
-        Aplica el método de Euler para resolver una ODE hasta que D supere un umbral.
-
-        Parámetros:
-        f   -- función que describe la ecuacion direncial (dD/dt = f(t, D))
-        t0  -- valor inicial de t
-        D0  -- valor inicial de D
-        h   -- tamaño del paso
-
-        Retorna:
-        t_values    -- lista de valores de t
-        D_values    -- lista de valores de D
-        t           -- valor de t cuando D supera el umbral
-         """
         t_values = [t0]
         D_values = [D0]
         h = self.h
