@@ -135,38 +135,37 @@ class ResultadosVentana:
 
                                                 
         elif hora_especifica != 0 and cantidad_filas != 0:
-
-            for i, fila in enumerate(tabla_resultados[0:cantidad_filas]):
-                if fila.reloj >= hora_especifica:
-                    objeto1, objeto2, objeto3, objeto4 = "", "", "", ""
-                    if len(objetos[fila.id]) > 0:
-                        if len(objetos[fila.id]) == 1:
-                            objeto1 = str(objetos.get(fila.id)[0])
-                        elif len(objetos[fila.id]) == 2:
-                            objeto1 = str(objetos.get(fila.id)[0])
-                            objeto2 = str(objetos.get(fila.id)[1])
-                        elif len(objetos[fila.id]) == 3:
-                            objeto1 = str(objetos.get(fila.id)[0])
-                            objeto2 = str(objetos.get(fila.id)[1])
-                            objeto3 = str(objetos.get(fila.id)[2])
-                        else:
-                            objeto1 = str(objetos.get(fila.id)[0])
-                            objeto2 = str(objetos.get(fila.id)[1])
-                            objeto3 = str(objetos.get(fila.id)[2])
-                            objeto4 = str(objetos.get(fila.id)[3])
-                
-                    self.tree.insert("", "end", values=(fila.id, fila.nombre_evento, truncar(fila.reloj),
-                                    truncar(fila.eventos[0][0]), truncar(fila.eventos[0][1]), truncar(fila.eventos[0][2]), 
-                                    truncar(fila.eventos[1][0]), truncar(fila.eventos[1][1]), truncar(fila.eventos[1][2]),
-                                    truncar(fila.eventos[2][0]), truncar(fila.eventos[2][1]), truncar(fila.eventos[2][2]),
-                                    truncar(fila.eventos[3][0]), truncar(fila.eventos[3][1]), truncar(fila.eventos[3][2]),
-                                    truncar(fila.eventos[4][0]), truncar(fila.eventos[4][1]), truncar(fila.eventos[4][2]),
-                                    truncar(fila.eventos[5][0]), truncar(fila.eventos[5][1]), truncar(fila.eventos[5][2]),
-                                    truncar(fila.eventos[6][0]), truncar(fila.eventos[6][1]), truncar(fila.eventos[6][2]),
-                                    fila.estado_cancha, colas[i][0], colas[i][1], truncar(fila.tiempo_espera_futbol),
-                                    truncar(fila.tiempo_espera_handball), truncar(fila.tiempo_espera_basquetball),
-                                    truncar(fila.tiempo_espera_ocupacion_limpieza), objeto1, objeto2, objeto3, objeto4))
-            self.tree.insert("", "end", values=(tabla_resultados[-1].id, tabla_resultados[-1].nombre_evento, truncar(fila.reloj),
+            tabla_hora = list(filter(lambda fila: fila.reloj >= hora_especifica , tabla_resultados))[0].id
+            for i, fila in enumerate(tabla_resultados[tabla_hora:cantidad_filas+tabla_hora]):
+                objeto1, objeto2, objeto3, objeto4 = "", "", "", ""
+                if len(objetos[fila.id]) > 0:
+                    if len(objetos[fila.id]) == 1:
+                        objeto1 = str(objetos.get(fila.id)[0])
+                    elif len(objetos[fila.id]) == 2:
+                        objeto1 = str(objetos.get(fila.id)[0])
+                        objeto2 = str(objetos.get(fila.id)[1])
+                    elif len(objetos[fila.id]) == 3:
+                        objeto1 = str(objetos.get(fila.id)[0])
+                        objeto2 = str(objetos.get(fila.id)[1])
+                        objeto3 = str(objetos.get(fila.id)[2])
+                    else:
+                        objeto1 = str(objetos.get(fila.id)[0])
+                        objeto2 = str(objetos.get(fila.id)[1])
+                        objeto3 = str(objetos.get(fila.id)[2])
+                        objeto4 = str(objetos.get(fila.id)[3])
+            
+                self.tree.insert("", "end", values=(fila.id, fila.nombre_evento, truncar(fila.reloj),
+                                truncar(fila.eventos[0][0]), truncar(fila.eventos[0][1]), truncar(fila.eventos[0][2]), 
+                                truncar(fila.eventos[1][0]), truncar(fila.eventos[1][1]), truncar(fila.eventos[1][2]),
+                                truncar(fila.eventos[2][0]), truncar(fila.eventos[2][1]), truncar(fila.eventos[2][2]),
+                                truncar(fila.eventos[3][0]), truncar(fila.eventos[3][1]), truncar(fila.eventos[3][2]),
+                                truncar(fila.eventos[4][0]), truncar(fila.eventos[4][1]), truncar(fila.eventos[4][2]),
+                                truncar(fila.eventos[5][0]), truncar(fila.eventos[5][1]), truncar(fila.eventos[5][2]),
+                                truncar(fila.eventos[6][0]), truncar(fila.eventos[6][1]), truncar(fila.eventos[6][2]),
+                                fila.estado_cancha, colas[i][0], colas[i][1], truncar(fila.tiempo_espera_futbol),
+                                truncar(fila.tiempo_espera_handball), truncar(fila.tiempo_espera_basquetball),
+                                truncar(fila.tiempo_espera_ocupacion_limpieza), objeto1, objeto2, objeto3, objeto4))
+            self.tree.insert("", "end", values=(tabla_resultados[-1].id, tabla_resultados[-1].nombre_evento, truncar(tabla_resultados[-1].reloj),
                             truncar(tabla_resultados[-1].eventos[0][0]), truncar(tabla_resultados[-1].eventos[0][1]), truncar(tabla_resultados[-1].eventos[0][2]), 
                             truncar(tabla_resultados[-1].eventos[1][0]), truncar(tabla_resultados[-1].eventos[1][1]), truncar(tabla_resultados[-1].eventos[1][2]),
                             truncar(tabla_resultados[-1].eventos[2][0]), truncar(tabla_resultados[-1].eventos[2][1]), truncar(tabla_resultados[-1].eventos[2][2]),

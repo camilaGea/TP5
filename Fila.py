@@ -177,9 +177,8 @@ class Fila:
                 objetos = self.objetos
                 for i, obj in enumerate(objetos):
                     if obj.estado is True and obj.nombre == "Futbol":
-                        objetos.pop(i)
+                        objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
 
                 t0=0
                 D0=0
@@ -205,9 +204,9 @@ class Fila:
                 objetos = self.objetos
                 for i, obj in enumerate(objetos):
                     if obj.estado is True and obj.nombre == "Basquet":
-                        objetos.pop(i)
+                        objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
+
                 t0=0
                 D0=0
                 colas = [*self.colaB, *self.colaFyH]
@@ -232,9 +231,8 @@ class Fila:
                 objetos = self.objetos
                 for i, obj in enumerate(objetos):
                     if obj.estado is True and obj.nombre == "Handball":
-                        objetos.pop(i)
+                        objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
 
                 t0=0
                 D0=0
