@@ -183,7 +183,7 @@ class Fila:
 
                 t0=0
                 D0=0
-                C= len(self.colaFyH)
+                C = len(self.colaFyH) + len(self.colaB)
                 # Crear una instancia de la clase MetodoNumerico
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_futbol, C )
                 # Aplicar el método de Euler
@@ -209,7 +209,7 @@ class Fila:
                 self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
                 t0=0
                 D0=0
-                C= len(self.colaB)
+                C= len(self.colaB) + len(self.colaFyH)
                 # Crear una instancia de la clase MetodoNumerico
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_Basquet, C )
                 # Aplicar el método de Euler
@@ -236,7 +236,7 @@ class Fila:
 
                 t0=0
                 D0=0
-                C= len(self.colaFyH)
+                C= len(self.colaFyH) + len(self.colaB)
                 # Crear una instancia de la clase MetodoNumerico
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_Handball, C )
                 # Aplicar el método de Euler
