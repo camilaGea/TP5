@@ -45,6 +45,7 @@ class Fila:
                  intervalo_llegada_handball_inf, intervalo_llegada_handball_sup, fin_ocupacion_futbol_inf, fin_ocupacion_futbol_sup,
                  fin_ocupacion_basquet_inf, fin_ocupacion_basquet_sup, fin_ocupacion_handball_inf, fin_ocupacion_handball_sup,
                  D_futbol, D_Handball, D_Basquet, h_metodo_numerico,cantidad_equipos_max] = datos
+
         
         if self.reloj == 0: #evento de Inicializacion
             self.nombre_evento = "Inicializacion"
@@ -176,9 +177,8 @@ class Fila:
                 objetos = self.objetos
                 for i, obj in enumerate(objetos):
                     if obj.estado is True and obj.nombre == "Futbol":
-                        objetos.pop(i)
+                        objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
                 t0=0
                 D0=0
                 colas = [*self.colaB, *self.colaFyH]
@@ -203,9 +203,8 @@ class Fila:
                 objetos = self.objetos
                 for i, obj in enumerate(objetos):
                     if obj.estado is True and obj.nombre == "Basquet":
-                        objetos.pop(i)
+                        objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
                 t0=0
                 D0=0
                 colas = [*self.colaB, *self.colaFyH]
@@ -230,9 +229,8 @@ class Fila:
                 objetos = self.objetos
                 for i, obj in enumerate(objetos):
                     if obj.estado is True and obj.nombre == "Handball":
-                        objetos.pop(i)
+                        objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
                 t0=0
                 D0=0
                 colas = [*self.colaB, *self.colaFyH]
