@@ -21,7 +21,8 @@ class ResultadosVentana:
                                 "rnd_cancha_h", "ocupacion_cancha_h","fin_ocupacion_h",
                                 "tiempo_actual", "demora_limpieza", "fin_limpieza",
                                 "Estado Cancha", "ColaB", "ColaFyH","Tiempo_espera_f",
-                                "Tiempo_espera_h","Tiempo_espera_b","Tiempo_ocupacion_limpieza" ,"Objeto1", "Objeto2", "Objeto3", "Objeto4"), show="headings")
+                                "Tiempo_espera_h","Tiempo_espera_b","Tiempo_ocupacion_limpieza" ,
+                                "Objeto1", "Objeto2", "Objeto3", "Objeto4"), show="headings")
         
         # Configurar encabezados y anchos de columna
         columns = [

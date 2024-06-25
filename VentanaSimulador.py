@@ -107,9 +107,10 @@ class VentanaSimulador:
                     estados[fila.id] = [*ob] if len(fila.objetos) > 0 else []
                     
         root_resultados = tk.Tk()
+        root_resultados_2 = tk.Toplevel()
         resultados_ventana = ResultadosVentana(root_resultados)
         resultados_ventana.mostrar_resultados(tabla, hora_especifica, cantidad_filas, colas, d, estados)
-        resultados_metodoNumerico = ResultadosMetodoNumerico(root_resultados)
+        resultados_metodoNumerico = ResultadosMetodoNumerico(root_resultados_2)
         resultados_metodoNumerico.mostrar_resultados(metodoNumerico)
         
 if __name__ == "__main__":
