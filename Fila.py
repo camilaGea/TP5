@@ -6,7 +6,8 @@ from MetodoNumerico import MetodoNumerico
 class Fila:
     def __init__(self, id, reloj=0.0, eventos=[], estado_cancha="Cancha Libre", colaB=[], colaFyH=[],tiempo_espera_futbol=0, 
                  tiempo_espera_basquetball=0, tiempo_espera_handball=0, tiempo_espera_ocupacion_limpieza=0, objetos=[], 
-                 D_futbol=0,D_Handball=0, D_Basquet=0, h_metodo_numerico=0.1, vectorMetodoNumerico=[]) -> None:
+                 D_futbol=0,D_Handball=0, D_Basquet=0, h_metodo_numerico=0.1, vectorMetodoNumerico=[],
+                 cantidad_equipos_f=0, cantidad_equipos_b=0, cantidad_equipos_h =0) -> None:
         self.id = id
         self.nombre_evento = ""
         self.reloj = reloj
@@ -24,7 +25,10 @@ class Fila:
         self.D_Handball = D_Handball
         self.D_Basquet = D_Basquet
         self.vectorMetodoNumerico = vectorMetodoNumerico
- 
+        self.cantidad_equipos_f = cantidad_equipos_f
+        self.cantidad_equipos_b = cantidad_equipos_b
+        self.cantidad_equipos_h = cantidad_equipos_h
+        
     def equipo_futbol(self, nombre, estado, hora_llegada):
         return Temporal(nombre, estado, hora_llegada)
     def equipo_basquet(self, nombre, estado, hora_llegada):
@@ -171,6 +175,7 @@ class Fila:
                                     self.eventos[6]]
             
             elif self.reloj == self.eventos[3][2]: #fin ocupacion de futbol
+                self.cantidad_equipos_f += 1
                 hora_comienzo_limpieza = self.reloj
                 self.nombre_evento = "Fin de ocupacion cancha de futbol"
                 objetos = self.objetos
@@ -198,6 +203,7 @@ class Fila:
                                 [hora_comienzo_limpieza, tiempo_demora_limpieza, self.reloj + tiempo_demora_limpieza]] 
             
             elif self.reloj == self.eventos[4][2]: #fin ocupacion de basquet
+                self.cantidad_equipos_b += 1
                 hora_comienzo_limpieza = self.reloj
                 self.nombre_evento = "Fin de ocupacion cancha de basquetball"
                 objetos = self.objetos
@@ -225,6 +231,7 @@ class Fila:
                                 [hora_comienzo_limpieza, tiempo_demora_limpieza, self.reloj + tiempo_demora_limpieza]] 
             
             elif self.reloj == self.eventos[5][2]: #fin ocupacion de handball
+                self.cantidad_equipos_h += 1
                 hora_comienzo_limpieza = self.reloj
                 self.nombre_evento = "Fin de ocupacion cancha de handball"
                 objetos = self.objetos
@@ -331,7 +338,7 @@ class Fila:
             
             return [self.reloj, self.eventos, self.estado_cancha, self.colaB, self.colaFyH, self.tiempo_espera_futbol, 
                     self.tiempo_espera_basquetball, self.tiempo_espera_handball, self.tiempo_espera_ocupacion_limpieza, 
-                    self.objetos, self.vectorMetodoNumerico]
+                    self.objetos, self.vectorMetodoNumerico, self.cantidad_equipos_f, self.cantidad_equipos_b, self.cantidad_equipos_h]
     
     def __str__(self):
         obj1 = ""

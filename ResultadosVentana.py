@@ -58,7 +58,7 @@ class ResultadosVentana:
         self.hsb.pack(side=tk.BOTTOM, fill=tk.X)
         self.tree.pack(expand=True, fill=tk.BOTH)
 
-    def mostrar_resultados(self, tabla_resultados, hora_especifica, cantidad_filas, colas, objetos, estados):
+    def mostrar_resultados(self, tabla_resultados, cantf,cantb,canth, hora_especifica, cantidad_filas, colas, objetos, estados):
 
         # Truncar
         def truncar(numero, decimales=3):
@@ -130,8 +130,8 @@ class ResultadosVentana:
                             truncar(tabla_resultados[-1].eventos[4][0]), truncar(tabla_resultados[-1].eventos[4][1]), truncar(tabla_resultados[-1].eventos[4][2]),
                             truncar(tabla_resultados[-1].eventos[5][0]), truncar(tabla_resultados[-1].eventos[5][1]), truncar(tabla_resultados[-1].eventos[5][2]),
                             truncar(tabla_resultados[-1].eventos[6][0]), truncar(tabla_resultados[-1].eventos[6][1]), truncar(tabla_resultados[-1].eventos[6][2]),
-                            tabla_resultados[-1].estado_cancha, colas[-1][0], colas[-1][1], truncar(tabla_resultados[-1].tiempo_espera_futbol),
-                            truncar(tabla_resultados[-1].tiempo_espera_handball), truncar(tabla_resultados[-1].tiempo_espera_basquetball),
+                            tabla_resultados[-1].estado_cancha, colas[-1][0], colas[-1][1], truncar(tabla_resultados[-1].tiempo_espera_futbol/cantf),
+                            truncar(tabla_resultados[-1].tiempo_espera_handball/canth), truncar(tabla_resultados[-1].tiempo_espera_basquetball/cantb),
                             truncar(tabla_resultados[-1].tiempo_espera_ocupacion_limpieza)))
 
                                                 
@@ -175,8 +175,8 @@ class ResultadosVentana:
                             truncar(tabla_resultados[-1].eventos[4][0]), truncar(tabla_resultados[-1].eventos[4][1]), truncar(tabla_resultados[-1].eventos[4][2]),
                             truncar(tabla_resultados[-1].eventos[5][0]), truncar(tabla_resultados[-1].eventos[5][1]), truncar(tabla_resultados[-1].eventos[5][2]),
                             truncar(tabla_resultados[-1].eventos[6][0]), truncar(tabla_resultados[-1].eventos[6][1]), truncar(tabla_resultados[-1].eventos[6][2]),
-                            tabla_resultados[-1].estado_cancha, colas[-1][0], colas[-1][1], truncar(tabla_resultados[-1].tiempo_espera_futbol),
-                            truncar(tabla_resultados[-1].tiempo_espera_handball), truncar(tabla_resultados[-1].tiempo_espera_basquetball),
+                            tabla_resultados[-1].estado_cancha, colas[-1][0], colas[-1][1], truncar(tabla_resultados[-1].tiempo_espera_futbol/cantf),
+                            truncar(tabla_resultados[-1].tiempo_espera_handball/canth), truncar(tabla_resultados[-1].tiempo_espera_basquetball/cantb),
                             truncar(tabla_resultados[-1].tiempo_espera_ocupacion_limpieza)))
         else:
             self.tree.insert("","end",values="")           
