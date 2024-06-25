@@ -45,7 +45,6 @@ class Fila:
                  intervalo_llegada_handball_inf, intervalo_llegada_handball_sup, fin_ocupacion_futbol_inf, fin_ocupacion_futbol_sup,
                  fin_ocupacion_basquet_inf, fin_ocupacion_basquet_sup, fin_ocupacion_handball_inf, fin_ocupacion_handball_sup,
                  D_futbol, D_Handball, D_Basquet, h_metodo_numerico,cantidad_equipos_max] = datos
-
         
         if self.reloj == 0: #evento de Inicializacion
             self.nombre_evento = "Inicializacion"
@@ -180,7 +179,6 @@ class Fila:
                         objetos.pop(i)
                 self.objetos = objetos
                 self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
-
                 t0=0
                 D0=0
                 colas = [*self.colaB, *self.colaFyH]
@@ -235,7 +233,6 @@ class Fila:
                         objetos.pop(i)
                 self.objetos = objetos
                 self.objetos.append(self.personal_limpieza("Personal Limpieza", True, self.reloj))
-
                 t0=0
                 D0=0
                 colas = [*self.colaB, *self.colaFyH]
@@ -255,7 +252,6 @@ class Fila:
                                 [hora_comienzo_limpieza, tiempo_demora_limpieza, self.reloj + tiempo_demora_limpieza]] 
 
             elif self.reloj == self.eventos[6][2]: #fin de limpieza de cancha
-                
                 self.tiempo_espera_ocupacion_limpieza += self.eventos[6][1]
                 
                 if len(self.colaFyH) > 0:
@@ -333,7 +329,9 @@ class Fila:
                 self.objetos = objetos 
                 self.nombre_evento = "Fin de limpieza cancha"
             
-            return [self.reloj, self.eventos, self.estado_cancha, self.colaB, self.colaFyH, self.tiempo_espera_futbol, self.tiempo_espera_basquetball, self.tiempo_espera_handball, self.tiempo_espera_ocupacion_limpieza, self.objetos, self.vectorMetodoNumerico]
+            return [self.reloj, self.eventos, self.estado_cancha, self.colaB, self.colaFyH, self.tiempo_espera_futbol, 
+                    self.tiempo_espera_basquetball, self.tiempo_espera_handball, self.tiempo_espera_ocupacion_limpieza, 
+                    self.objetos, self.vectorMetodoNumerico]
     
     def __str__(self):
         obj1 = ""
