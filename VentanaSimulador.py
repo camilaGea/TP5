@@ -83,7 +83,7 @@ class VentanaSimulador:
         canth=0
         d = dict()
         estados = dict()
-        for i in range(tiempo_total):
+        for i in range(100000):
             if i == 0:
                 fila = Fila(i+1)
                 lista = fila.simular(datos)
