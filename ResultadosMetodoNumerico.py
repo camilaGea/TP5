@@ -13,11 +13,11 @@ class ResultadosMetodoNumerico:
         self.frame.pack(expand=True, fill=tk.BOTH)
 
     # Crear el Treeview para mostrar los resultados de la simulación
-        self.tree = ttk.Treeview(self.frame, columns=("ID", "ti", "tvector","Di"), show="headings")
+        self.tree = ttk.Treeview(self.frame, columns=("ID", "ti", "tvector","Di", "C"), show="headings")
     
     # Configurar encabezados y anchos de columna
         columns = [
-            ("ID", 50), ("ti", 50), ("tvector", 50),("Di", 50) 
+            ("ID", 50), ("ti", 50), ("tvector", 50),("Di", 50),("C", 50)
         ]
     
         for col, width in columns:
@@ -38,5 +38,5 @@ class ResultadosMetodoNumerico:
 
         # Insertar los datos de tabla_resultados en el Treeview
         for vector in metodoNumerico:
-                values = (vector[0], vector[1], vector[2], vector[3])
+                values = (vector[0], vector[1], vector[2], vector[3], vector[4])
                 self.tree.insert("", "end", values=values)
