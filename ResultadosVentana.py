@@ -96,11 +96,10 @@ class ResultadosVentana:
         elif fila_buscada.nombre_evento == 'Fin de ocupacion cancha de futbol':
             D=self.D_futbol
 
-        colab = fila_buscada.colaB
+        colaB = fila_buscada.colaB
         colaFyH = fila_buscada.colaFyH
-        cB=len(colab)
-        cFyH = len(colaFyH)
-        C = cB+ cFyH
+        colas = [*colaB, *colaFyH]
+        C = len(colas)
         metodo_numerico = MetodoNumerico(self.h_metodo_numerico, D, C)
         total = metodo_numerico.metodo_euler()
         root_resultados_2 = tk.Toplevel()
