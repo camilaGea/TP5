@@ -3,7 +3,13 @@ from tkinter import Toplevel, ttk
 from tkinter import Scrollbar
 from MetodoNumerico import MetodoNumerico
 from ResultadosMetodoNumerico import ResultadosMetodoNumerico
-
+# Truncar
+def truncar(numero, decimales=3):
+    if numero is not None:
+        factor = 10 ** decimales
+        return int(numero * factor) / factor
+    else:
+        return ""
 class ResultadosVentana:
 
     def __init__(self, root,h_metodo_numerico,D_futbol,D_Handball,D_Basquet ):
@@ -99,25 +105,17 @@ class ResultadosVentana:
         colaB = self.colas[int(id_buscado)-1][0]
         colaFyH = self.colas[int(id_buscado)-1][1]
         C = colaB + colaFyH
-        print(C)
         metodo_numerico = MetodoNumerico(self.h_metodo_numerico, D, C)
         total = metodo_numerico.metodo_euler()
         root_resultados_2 = tk.Toplevel()
         resultados_metodoNumerico = ResultadosMetodoNumerico(root_resultados_2, D, C)
-        resultados_metodoNumerico.mostrar_resultados(total)
+        resultados_metodoNumerico.mostrar_resultados(total, truncar)
     
 
     def mostrar_resultados(self, tabla_resultados, cantf,cantb,canth, hora_especifica, cantidad_filas, colas, objetos, estados):
 
         self.tabla_resultados = tabla_resultados  
         self.colas = colas
-        # Truncar
-        def truncar(numero, decimales=3):
-            if numero is not None:
-                factor = 10 ** decimales
-                return int(numero * factor) / factor
-            else:
-                return ""
         
         # Limpiar el Treeview antes de insertar nuevos datos
         for row in self.tree.get_children():

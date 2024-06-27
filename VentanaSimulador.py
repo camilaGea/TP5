@@ -5,6 +5,9 @@ from Fila import Fila
 from ResultadosMetodoNumerico import ResultadosMetodoNumerico
 from ResultadosVentana import ResultadosVentana
 
+def truncar(numero, decimales=3):
+    factor = 10 ** decimales
+    return int(numero * factor) / factor
 class VentanaSimulador:
     def __init__(self, root):
         self.root = root
@@ -17,10 +20,6 @@ class VentanaSimulador:
         # Crear y colocar los widgets de entrada
         self.create_widgets()
 
-    def truncar(self, numero, decimales=3):
-        factor = 10 ** decimales
-        return int(numero * factor) / factor
-    
     def create_widgets(self):
         labels_text = [
             "Cantidad de tiempo (X):", "Media de llegada de equipo de fútbol:(hs)",
@@ -58,12 +57,12 @@ class VentanaSimulador:
         intervalo_llegada_basquet_sup = float(params[3])
         intervalo_llegada_handball_inf = float(params[4])
         intervalo_llegada_handball_sup = float(params[5])
-        fin_ocupacion_futbol_inf = self.truncar(float(params[6]) / 60)
-        fin_ocupacion_futbol_sup = self.truncar(float(params[7]) / 60)
-        fin_ocupacion_basquet_inf = self.truncar(float(params[8]) / 60)
-        fin_ocupacion_basquet_sup = self.truncar(float(params[9]) / 60)
-        fin_ocupacion_handball_inf = self.truncar(float(params[10]) / 60)
-        fin_ocupacion_handball_sup = self.truncar(float(params[11]) / 60)
+        fin_ocupacion_futbol_inf = truncar(float(params[6]) / 60)
+        fin_ocupacion_futbol_sup = truncar(float(params[7]) / 60)
+        fin_ocupacion_basquet_inf = truncar(float(params[8]) / 60)
+        fin_ocupacion_basquet_sup = truncar(float(params[9]) / 60)
+        fin_ocupacion_handball_inf = truncar(float(params[10]) / 60)
+        fin_ocupacion_handball_sup = truncar(float(params[11]) / 60)
         cantidad_equipos_max = int(params[12])
         D_futbol = int(params[13])
         D_Handball = int(params[14])

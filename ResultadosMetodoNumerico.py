@@ -24,10 +24,10 @@ class ResultadosMetodoNumerico:
 
 
         # Crear el Treeview para mostrar los resultados del método numérico
-        self.tree = ttk.Treeview(self.frame, columns=("ti", "D", "dD/dt", "t(i+1)", "D(i+1)"), show="headings")
+        self.tree = ttk.Treeview(self.frame, columns=("ti[min]", "ti[hs]", "D", "dD/dt", "t(i+1)", "D(i+1)"), show="headings")
     
         # Configurar encabezados y anchos de columna
-        columns = [("ti", 100), ("D", 100), ("dD/dt", 100), ("t(i+1)", 100), ("D(i+1)", 100)]
+        columns = [("ti[min]", 100),("ti[hs]", 100), ("D", 100), ("dD/dt", 100), ("t(i+1)", 100), ("D(i+1)", 100)]
         for col, width in columns:
             self.tree.heading(col, text=col)
             self.tree.column(col, width=width)
@@ -38,7 +38,7 @@ class ResultadosMetodoNumerico:
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         self.tree.config(yscrollcommand=scrollbar.set)
     
-    def mostrar_resultados(self, resultados):
+    def mostrar_resultados(self, resultados, truncar):
         # self.D.delete(1.0, tk.END)
         # self.D.insert(tk.END, str(self.D_objetivo))
         # self.D.config(state=tk.DISABLED)
@@ -53,7 +53,7 @@ class ResultadosMetodoNumerico:
         
         # Insertar los datos de resultados en el Treeview
         for row_data in resultados:
-            self.tree.insert("", "end", values=row_data)
+            self.tree.insert("", "end", values=(truncar(row_data[0]), truncar(row_data[0]/60), truncar(row_data[1]), truncar(row_data[2]), truncar(row_data[3]), truncar(row_data[4])))
     
 
 
