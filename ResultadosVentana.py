@@ -1,11 +1,17 @@
 import tkinter as tk
 from tkinter import Toplevel, ttk
 from tkinter import Scrollbar
+from MetodoNumerico import MetodoNumerico
+from ResultadosMetodoNumerico import ResultadosMetodoNumerico
 
 class ResultadosVentana:
 
-    def __init__(self, root ):
+    def __init__(self, root,h_metodo_numerico,D_futbol,D_Handball,D_Basquet ):
         self.root = root
+        self.h_metodo_numerico = h_metodo_numerico
+        self.D_futbol = D_futbol
+        self.D_Handball = D_Handball
+        self.D_Basquet = D_Basquet
         #self.frame = frame
         self.root.title("Resultados de la Simulación")
 
@@ -58,8 +64,54 @@ class ResultadosVentana:
         self.hsb.pack(side=tk.BOTTOM, fill=tk.X)
         self.tree.pack(expand=True, fill=tk.BOTH)
 
+        # Agregar entrada para ID y botón de búsqueda
+        self.entry_frame = ttk.Frame(root)
+        self.entry_frame.pack(fill=tk.X)
+
+        self.id_label = ttk.Label(self.entry_frame, text="ID:")
+        self.id_label.pack(side=tk.LEFT, padx=5)
+
+        self.id_entry = ttk.Entry(self.entry_frame)
+        self.id_entry.pack(side=tk.LEFT, padx=5)
+
+        self.search_button = ttk.Button(self.entry_frame, text="Buscar", command=self.buscar_fila_por_id)
+        self.search_button.pack(side=tk.LEFT, padx=5)
+
+    def buscar_fila_por_id(self):
+        id_buscado = self.id_entry.get()
+        fila_buscada = None
+        #print(id_buscado)
+        for fila in self.tabla_resultados:
+            if str(fila.id) == id_buscado:
+                fila_buscada = fila
+                #print('colab: ', len(fila.colaB))
+                #print('colaFyH: ', len(fila.colaFyH))
+                #print(self.colas[fila.id][0])
+                #print(self.colas[fila.id][1])            
+                break
+        if fila_buscada.nombre_evento == 'Fin de ocupacion cancha de handball':
+            D=self.D_Handball
+        elif fila_buscada.nombre_evento == 'Fin de ocupacion cancha de basquetball':
+            D=self.D_Basquet
+        elif fila_buscada.nombre_evento == 'Fin de ocupacion cancha de futbol':
+            D=self.D_futbol
+
+        colab = fila_buscada.colaB
+        colaFyH = fila_buscada.colaFyH
+        cB=len(colab)
+        cFyH = len(colaFyH)
+        C = cB+ cFyH
+        metodo_numerico = MetodoNumerico(self.h_metodo_numerico, D, C)
+        total = metodo_numerico.metodo_euler()
+        root_resultados_2 = tk.Toplevel()
+        resultados_metodoNumerico = ResultadosMetodoNumerico(root_resultados_2, D, C)
+        resultados_metodoNumerico.mostrar_resultados(total)
+    
+
     def mostrar_resultados(self, tabla_resultados, cantf,cantb,canth, hora_especifica, cantidad_filas, colas, objetos, estados):
 
+        self.tabla_resultados = tabla_resultados  
+        self.colas = colas
         # Truncar
         def truncar(numero, decimales=3):
             if numero is not None:
@@ -67,7 +119,7 @@ class ResultadosVentana:
                 return int(numero * factor) / factor
             else:
                 return ""
-            
+        
         # Limpiar el Treeview antes de insertar nuevos datos
         for row in self.tree.get_children():
             self.tree.delete(row)

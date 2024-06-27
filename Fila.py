@@ -184,16 +184,14 @@ class Fila:
                     if obj.estado is True and obj.nombre == "Futbol":
                         objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                t0=0
-                D0=0
                 colas = [*self.colaB, *self.colaFyH]
                 C = len(colas)
                 # Crear una instancia de la clase MetodoNumerico
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_futbol, C )
                 # Aplicar el método de Euler
-                t_values, D_values, t_final, D_final = metodo_numerico.metodo_euler(MetodoNumerico.f, t0, D0)
-                tiempo_demora_limpieza = t_final * 0.016 #lo paso hs
-                self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
+                t_next = metodo_numerico.metodo_euler2()
+                tiempo_demora_limpieza = t_next * 0.016 #lo paso hs
+                #self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
                 self.eventos = [self.eventos[0], 
                                 self.eventos[1], 
                                 self.eventos[2],
@@ -211,16 +209,14 @@ class Fila:
                     if obj.estado is True and obj.nombre == "Basquet":
                         objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                t0=0
-                D0=0
                 colas = [*self.colaB, *self.colaFyH]
                 C = len(colas)
                 # Crear una instancia de la clase MetodoNumerico
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_Basquet, C )
                 # Aplicar el método de Euler
-                t_values, D_values, t_final, D_final = metodo_numerico.metodo_euler(MetodoNumerico.f, t0, D0)
-                tiempo_demora_limpieza = t_final * 0.016 #lo paso a hs
-                self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
+                t_next = metodo_numerico.metodo_euler2()
+                tiempo_demora_limpieza = t_next * 0.016 #lo paso a hs
+                #self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
                 self.eventos = [self.eventos[0], 
                                 self.eventos[1], 
                                 self.eventos[2],
@@ -238,16 +234,14 @@ class Fila:
                     if obj.estado is True and obj.nombre == "Handball":
                         objetos[i] = self.personal_limpieza("Personal Limpieza", True, self.reloj)
                 self.objetos = objetos
-                t0=0
-                D0=0
                 colas = [*self.colaB, *self.colaFyH]
                 C = len(colas)
                 # Crear una instancia de la clase MetodoNumerico
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_Handball, C )
                 # Aplicar el método de Euler
-                t_values, D_values, t_final, D_final = metodo_numerico.metodo_euler(MetodoNumerico.f, t0, D0)
-                tiempo_demora_limpieza = t_final * 0.016 #lo paso a hs
-                self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
+                t_next = metodo_numerico.metodo_euler2()
+                tiempo_demora_limpieza = t_next * 0.016 #lo paso a hs
+                #self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
                 self.eventos = [self.eventos[0], 
                                 self.eventos[1], 
                                 self.eventos[2],

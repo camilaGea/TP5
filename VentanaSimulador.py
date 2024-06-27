@@ -97,14 +97,12 @@ class VentanaSimulador:
                     break
                 else:
                     ob = []
-                    metodoNumerico = []
                     fila = Fila(i+1, lista[0], lista[1], lista[2], lista[3], lista[4], lista[5], lista[6], lista[7], lista[8], lista[9])
                     lista = fila.simular(datos)
                     cantf += fila.cantidad_equipos_f
                     cantb += fila.cantidad_equipos_b
                     canth += fila.cantidad_equipos_h
-                    for vec in fila.vectorMetodoNumerico:
-                        metodoNumerico.append(vec)
+                    
                     tabla.append(fila)
                     colas.append([len(fila.colaB), len(fila.colaFyH)])
                     for obj in fila.objetos:
@@ -113,11 +111,8 @@ class VentanaSimulador:
                     estados[fila.id] = [*ob] if len(fila.objetos) > 0 else []
 
         root_resultados = tk.Tk()
-        root_resultados_2 = tk.Toplevel()
-        resultados_ventana = ResultadosVentana(root_resultados)
+        resultados_ventana = ResultadosVentana(root_resultados, h_metodo_numerico, D_futbol, D_Handball,D_Basquet)
         resultados_ventana.mostrar_resultados(tabla, cantf,cantb,canth, hora_especifica, cantidad_filas, colas, d, estados)
-        resultados_metodoNumerico = ResultadosMetodoNumerico(root_resultados_2)
-        resultados_metodoNumerico.mostrar_resultados(metodoNumerico)
         
 if __name__ == "__main__":
     root = tk.Tk()
