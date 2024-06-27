@@ -16,13 +16,19 @@ class MetodoNumerico:
         resultados = []
     
         while D < D_objetivo:
-            dD_dt = 0.6 * C + t
-            t_next = t + h
-            D_next = D + dD_dt * h
+            dD_dt = (0.6 * C) + t
+            t_next = round(t + h,10)
+            D_next = D + (dD_dt * h)
             resultados.append((t, D, dD_dt, t_next, D_next))
             t = t_next
             D = D_next
-    
+
+        if D > D_objetivo:
+            dD_dt = (0.6 * C) + t
+            t_next = round(t + h,10)
+            D_next = D + (dD_dt * h)
+            resultados.append((t, D, dD_dt, t_next, D_next))
+
         return resultados
 
 
@@ -38,9 +44,9 @@ class MetodoNumerico:
         D = 0
 
         while D < D_objetivo:
-            dD_dt = 0.6 * C + t
-            t_next = t + h
-            D_next = D + dD_dt * h
+            dD_dt = (0.6 * C) + t
+            t_next = round(t + h,10)
+            D_next = D + (dD_dt * h)
            
             t = t_next
             D = D_next

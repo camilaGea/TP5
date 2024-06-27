@@ -43,6 +43,10 @@ class Fila:
     def distribucion_uniforme(self, rnd, inf, sup):
         return inf + (sup - inf) * rnd
     
+    def truncar(self, numero, decimales=3):
+        factor = 10 ** decimales
+        return int(numero * factor) / factor
+    
     def simular(self, datos):
         
         [tiempo_total, media_llegada_futbol, intervalo_llegada_basquet_inf, intervalo_llegada_basquet_sup, 
@@ -190,7 +194,7 @@ class Fila:
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_futbol, C )
                 # Aplicar el método de Euler
                 t_next = metodo_numerico.metodo_euler2()
-                tiempo_demora_limpieza = t_next * 0.016 #lo paso hs
+                tiempo_demora_limpieza = self.truncar(t_next / 60) #lo paso hs
                 #self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
                 self.eventos = [self.eventos[0], 
                                 self.eventos[1], 
@@ -215,7 +219,7 @@ class Fila:
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_Basquet, C )
                 # Aplicar el método de Euler
                 t_next = metodo_numerico.metodo_euler2()
-                tiempo_demora_limpieza = t_next * 0.016 #lo paso a hs
+                tiempo_demora_limpieza = self.truncar(t_next / 60)  #lo paso a hs
                 #self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
                 self.eventos = [self.eventos[0], 
                                 self.eventos[1], 
@@ -240,7 +244,7 @@ class Fila:
                 metodo_numerico = MetodoNumerico(h_metodo_numerico,D_Handball, C )
                 # Aplicar el método de Euler
                 t_next = metodo_numerico.metodo_euler2()
-                tiempo_demora_limpieza = t_next * 0.016 #lo paso a hs
+                tiempo_demora_limpieza = self.truncar(t_next / 60)  #lo paso a hs
                 #self.vectorMetodoNumerico.append([self.id, t_final,tiempo_demora_limpieza, D_final, C])
                 self.eventos = [self.eventos[0], 
                                 self.eventos[1], 
