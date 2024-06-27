@@ -19,7 +19,7 @@ class MetodoNumerico:
             dD_dt = (0.6 * C) + t
             t_next = round(t + h,10)
             D_next = D + (dD_dt * h)
-            resultados.append((t, D, dD_dt, t_next, D_next))
+            resultados.append((t, D, dD_dt, t_next, D_next, C))
             t = t_next
             D = D_next
 
@@ -27,7 +27,7 @@ class MetodoNumerico:
             dD_dt = (0.6 * C) + t
             t_next = round(t + h,10)
             D_next = D + (dD_dt * h)
-            resultados.append((t, D, dD_dt, t_next, D_next))
+            resultados.append((t, D, dD_dt, t_next, D_next, C))
 
         return resultados
 
