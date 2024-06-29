@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import Toplevel, ttk
-from tkinter import Scrollbar
+from tkinter import Scrollbar, messagebox
 from MetodoNumerico import MetodoNumerico
 from ResultadosMetodoNumerico import ResultadosMetodoNumerico
 # Truncar
@@ -101,6 +101,9 @@ class ResultadosVentana:
             D=self.D_Basquet
         elif fila_buscada.nombre_evento == 'Fin de ocupacion cancha de futbol':
             D=self.D_futbol
+        else:
+            messagebox.showinfo("Error", "Debe ingresar un ID de Fin de ocupación")
+            return
 
         colaB = self.colas[int(id_buscado)-1][0]
         colaFyH = self.colas[int(id_buscado)-1][1]
